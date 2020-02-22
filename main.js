@@ -4,84 +4,76 @@ let oLog = [];
 let gameStatus = document.getElementById('game-status');
 let startButton = document.getElementById('start');
 let playerO = false;
-let moveCount = []
-//let board = Array.from(document.getElementsByClassName('board')) -- > for later
+let moveCount = [];
 
 startButton.addEventListener('click', () => {
   startButton.disabled = true;
   start();
-  setTimeout(() => {
-    counter();
-  }, 1000);
-});
-
-//let eventListeners = () => board.forEach(childNodes => childNodes.addEventListener('click', placeMark) --> for later
+}); 
 
 function start() {
   document.getElementById('cell-0').addEventListener('click', () => {
     placeMark(0);
     once = true;
-    winChecker(oLog, xLog);
+    winChecker();
   });
   document.getElementById('cell-1').addEventListener('click', () => {
     placeMark(1);
     once = true; 
-    winChecker(oLog, xLog);
+    winChecker();
   });
   document.getElementById('cell-2').addEventListener('click', () => {
     placeMark(2);
     once = true; 
-    winChecker(oLog, xLog);
+    winChecker();
   });
   document.getElementById('cell-3').addEventListener('click', () => {
     placeMark(3);
     once = true; 
-    winChecker(oLog, xLog);
+    winChecker();
   });
   document.getElementById('cell-4').addEventListener('click', () => {
     placeMark(4);
     once = true; 
-    winChecker(oLog, xLog);
+    winChecker();
   });
   document.getElementById('cell-5').addEventListener('click', () => {
     placeMark(5);
     once = true; 
-    winChecker(oLog, xLog);
+    winChecker();
   });
   document.getElementById('cell-6').addEventListener('click', () => {
     placeMark(6);
     once = true; 
-    winChecker(oLog, xLog);
+    winChecker();
   });
   document.getElementById('cell-7').addEventListener('click', () => {
     placeMark(7);
     once = true; 
-    winChecker(oLog, xLog);
+    winChecker();
   });
   document.getElementById('cell-8').addEventListener('click', () => {
     placeMark(8);
     once = true; 
-    winChecker(oLog, xLog);
+    winChecker();
   });
 }
 
-function gameReset() {
-  for (let i = 0; i < 9; i++) {
-    document.getElementById('cell-' + i).textContent = "";
-    startButton.disabled = false;
-  }
-}
-
-function winChecker (xLog, oLog) {
-  for (let i = 0; i < winCombo.length; i++) {
-    let winTest = winCombo[i];
-    console.log(i);
-    console.log(winTest);
-    if (xLog.includes(winTest)) {
+function winChecker () {
+  for (let subCombo of winCombo) {
+    let xCount = 0;
+    let oCount = 0;
+    for (let num of subCombo) {
+      if (xLog.includes(num)) {
+        xCount = xCount + 1;
+      } else if (oLog.includes(num)){
+        oCount = oCount + 1; 
+      }
+    }
+    if (xCount == 3) {
       gameStatus.textContent = "Player X wins!";
       setTimeout(gameReset(), 2000);
-    }
-    else if (oLog.includes(winTest)) {
+    } else if (oCount == 3) {
       gameStatus.textContent = "Player O wins!";
       setTimeout(gameReset(), 2000);
     } else if (moveCount.length === 9) {
@@ -114,12 +106,13 @@ function placeMark(numCell) {
   }
 }
 
-function counter () {
-  for (let i = 0; i < 3000; i++) {
-    let display = i.toString;
-    document.getElementById('timer').textContent = display; 
+function gameReset() {
+  for (let i = 0; i < 9; i++) {
+    document.getElementById('cell-' + i).textContent = "";
+    startButton.disabled = false;
   }
 }
 
-
 // setInterval() // fires every specified number of milliseconds so may be preferable for a timer 
+//let board = Array.from(document.getElementsByClassName('board')) -- > for later
+//let eventListeners = () => board.forEach(childNodes => childNodes.addEventListener('click', placeMark) --> for later
