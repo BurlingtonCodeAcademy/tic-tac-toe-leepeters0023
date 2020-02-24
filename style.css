@@ -49,6 +49,10 @@ div[id="row-3"] div {
   border-bottom: none;
 }
 
+div[id="add-player-input"] {
+  margin-top: 20px;
+}
+
 div[id^="row-"] {
   clear: float;
   width: 608px;
