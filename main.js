@@ -116,14 +116,14 @@ function winChecker () {
     if (xCount == 3) {
       gameStatus.textContent = playerNameX + " wins!";
       showWin(xLog);
-      setTimeout(() => {location.reload(); }, 1000)
+      setTimeout(() => {location.reload(); }, 1500)
     } else if (oCount == 3) {
       gameStatus.textContent = playerNameO+ " wins!";
-      setTimeout(() => {location.reload(); }, 1000);
+      setTimeout(() => {location.reload(); }, 1500);
       showWin(oLog);
     } else if (moveCount.length === 9) {
       gameStatus.textContent = "It's a draw";
-      setTimeout(() => {location.reload(); }, 1000);
+      setTimeout(() => {location.reload(); }, 1500);
     }
   }
 }
