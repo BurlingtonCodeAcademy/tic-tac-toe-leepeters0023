@@ -151,7 +151,17 @@ function placeMark(numCell) {
     gameStatus.textContent = playerNameO + "'s turn";
   }
 }
+// | - - - computer player functionality - - - |
+function activateComputer() {
+  randNumGen(0, 9);
+}
+// func to return random integer (inclusive on both ends)
+function randNumGen(min, max) { 
+  let randNum =  Math.floor(Math.random() * (max - min + 1)) + min + 1
+  return randNum;
+}
 // | - - - game timer - - - |
+// displays unformatted incrementing count every second
 function timer() {
   setInterval(() => {countUp();}, 1000);
 }
