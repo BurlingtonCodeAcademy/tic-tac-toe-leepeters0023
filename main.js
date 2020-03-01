@@ -15,13 +15,16 @@ let singlePlayerButton = document.getElementById('single-player')
 let multiPlayerButton = document.getElementById('multi-player')
 let playerNameInput = document.getElementById('add-player-input')
     playerNameInput.style.visibility = "hidden"
+let computerPlayer = false; 
+let randNum = NaN;
+//let cells = Array.from(document.querySelectorAll("cell"));
 
 // | - - - choose single or multi player - - - |
 singlePlayerButton.addEventListener('click', () => {
   multiPlayerButton.disabled = true;
   addPlayerOButton.style.visibility = "visible"
   playerNameO.style.visibility = "visible"
-  activateComputer();
+  computerPlayer = true;
 })
 multiPlayerButton.addEventListener('click', () => {
   singlePlayerButton.disabled = true;
@@ -44,63 +47,88 @@ startButton.addEventListener('click', () => {
   start();
   timer();
 }); 
+/* function start() {
+ cells.forEach.addEventListener('click', () => {
+    placeMark(this);
+    winChecker();
+  })
+}*/
 // | - - - game function / unique cell event listeners - - - |
 function start() {
   document.getElementById('cell-0').addEventListener('click', () => {
+    if (oLog.includes(0) === false && xLog.includes(0) === false) {
     placeMark(0);
     winChecker();
+    } else {alert('Space taken')};
   },
     {once : true}
   );
   document.getElementById('cell-1').addEventListener('click', () => {
+    if (oLog.includes(1) === false && xLog.includes(1) === false) {
     placeMark(1);
     winChecker();
+    } else {alert('Space taken')};
   },
   {once : true}
   ); 
   document.getElementById('cell-2').addEventListener('click', () => {
-    placeMark(2);
-    winChecker();
+    if (oLog.includes(2) === false && xLog.includes(2) === false) {
+      placeMark(2);
+      winChecker();
+      } else {alert('Space taken')};
   },
   {once : true}
   );
   document.getElementById('cell-3').addEventListener('click', () => {
-    placeMark(3);
-    winChecker();
+    if (oLog.includes(3) === false && xLog.includes(3) === false) {
+      placeMark(3);
+      winChecker();
+      } else {alert('Space taken')};
   },
   {once : true}
   );
   document.getElementById('cell-4').addEventListener('click', () => {
-    placeMark(4);
-    winChecker();
+    if (oLog.includes(4) === false && xLog.includes(4) === false) {
+      placeMark(4);
+      winChecker();
+      } else {alert('Space taken')};
   },
   {once : true}
   );
   document.getElementById('cell-5').addEventListener('click', () => {
-    placeMark(5);
-    winChecker();
+    if (oLog.includes(4) === false && xLog.includes(4) === false) {
+      placeMark(4);
+      winChecker();
+      } else {alert('Space taken')};
   },
   {once : true}
   );
   document.getElementById('cell-6').addEventListener('click', () => {
-    placeMark(6);
-    winChecker();
+    if (oLog.includes(6) === false && xLog.includes(6) === false) {
+      placeMark(6);
+      winChecker();
+      } else {alert('Space taken')};
   },
   {once : true}
   );
   document.getElementById('cell-7').addEventListener('click', () => {
-    placeMark(7);
-    winChecker();
+    if (oLog.includes(7) === false && xLog.includes(7) === false) {
+      placeMark(7);
+      winChecker();
+      } else {alert('Space taken')};
   },
   {once : true}
   );
   document.getElementById('cell-8').addEventListener('click', () => {
-    placeMark(8);
-    winChecker();
+    if (oLog.includes(9) === false && xLog.includes(9) === false) {
+      placeMark(9);
+      winChecker();
+      } else {alert('Space taken')};
   },
   {once : true}
   );
 }
+
 // | - - - win check functions - - - |
 function winChecker () {
   for (let subCombo of winCombo) {
@@ -124,7 +152,7 @@ function winChecker () {
     } else if (moveCount.length === 9) {
       gameStatus.textContent = "It's a draw";
       setTimeout(() => {location.reload(); }, 1500);
-    }
+    } 
   }
 }
 function showWin (winningArray) {
@@ -141,23 +169,30 @@ function placeMark(numCell) {
     moveCount.push(numCell);
     playerO = false; // switch players
     gameStatus.textContent = playerNameX + "'s turn";
-  }
-  else if (playerO === false) {
+  } else if (playerO === false && computerPlayer === false) {
     document.getElementById('cell-' + numCell).textContent = "X";
     xLog.push(numCell);
     xLog.sort();
     moveCount.push(numCell);
     playerO = true; // switch players
     gameStatus.textContent = playerNameO + "'s turn";
+  } else if (playerO === false && computerPlayer === true) {
+    let randNum = randNumGen(); 
+    while (oLog.includes(randNum) === false && xLog.includes(randNum) === false) {
+    document.getElementById('cell-' + ranNum).textContent = "0";
+    oLog.push(randNum);
+    oLog.sort();
+    moveCount.push(randNum);
+    playerO = false; // switch players
+    break; 
+    }
+    let randNum = randNumGen(); 
   }
 }
 // | - - - computer player functionality - - - |
-function activateComputer() {
-  randNumGen(0, 9);
-}
 // func to return random integer (inclusive on both ends)
-function randNumGen(min, max) { 
-  let randNum =  Math.floor(Math.random() * (max - min + 1)) + min + 1
+function randNumGen() { 
+  let randNum =  Math.floor(Math.random() * (0 - 9 + 1)) + min + 1
   return randNum;
 }
 // | - - - game timer - - - |

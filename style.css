@@ -73,8 +73,20 @@ start:disabled {
   color: rgb(0, 0, 0);
 }
 
-.cell:hover {
-  background-color: white;
-  box-shadow: inset 0px 0px 0px 5px red;
+.button {
+    background-color: rgb(95, 97, 95); 
+    border: none;
+    font-family: Courier;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
 }
-
+.button:hover{
+  opacity: 50%;
+}
+#start {
+  background-color: green;
+}
