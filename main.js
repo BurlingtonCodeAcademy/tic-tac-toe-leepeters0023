@@ -205,6 +205,7 @@ function countUp() {
   document.getElementById('timer').textContent = count + " seconds have elapsed in play"
 }
 
+// make array of available cells and choose from that 
 
 
 
