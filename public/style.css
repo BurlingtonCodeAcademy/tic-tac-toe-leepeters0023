@@ -89,4 +89,10 @@ start:disabled {
 }
 #start {
   background-color: green;
+  margin-top: 10px;
+}
+.cell:hover {
+  background-color:grey;
+  opacity: 50%;
+  cursor: pointer;
 }
