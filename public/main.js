@@ -5,8 +5,9 @@ let boardArray = [0, 1, 2, 3, 4, 5, 6, 7, 8]; // listing available spaces for AI
 let moveCount = []; // for tracking location and number of moves
 let playerO = false;
 let count = 0; // for game timer
-let computerPlayer = null; 
+let computerPlayer = false; 
 let randNum = NaN;
+let aiPick; 
 // | - - - DOM vars - - - |
 let gameStatus = document.getElementById('game-status'); // display active player or win / draw
 let startButton = document.getElementById('start');
@@ -25,6 +26,7 @@ let multiPlayerButton = document.getElementById('multi-player')
 // | - - - choose single or multi player - - - |
 singlePlayerButton.addEventListener('click', () => {
   addPlayerOButton.style.visibility = "visible"
+  multiPlayerButton.style.visibility = "hidden"
   playerNameO.style.visibility = "visible"
   computerPlayer = true;
   startButton.disabled = false; 
@@ -56,7 +58,6 @@ startButton.addEventListener('click', () => {
   start();
   timer();
 }); 
-
 // | - - - game function / unique cell event listeners - - - |
 function start() {
   document.getElementById('cell-0').addEventListener('click', () => {
@@ -126,6 +127,7 @@ function winChecker () {
         oCount = oCount + 1; 
       }
     }
+    console.log('half way through win check func')
     if (xCount == 3) {
       gameStatus.textContent = playerNameX + " wins!";
       showWin(subCombo);
@@ -148,7 +150,7 @@ function showWin (winningArray) {
 // | - - - place mark on board & change player - - - |
 function placeMark(numCell) {
   if (playerO) {
-    document.getElementById('cell-' + numCell).textContent = "0";
+    document.getElementById('cell-' + numCell).textContent = "O";
     oLog.push(numCell);
     oLog.sort();
     moveCount.push(numCell);
@@ -162,26 +164,33 @@ function placeMark(numCell) {
     moveCount.push(numCell);
     playerO = true; // switch players
     gameStatus.textContent = playerNameO + "'s turn"; 
-  } else if (playerO === false && computerPlayer === true) {
+    console.log('multi player')
+  } 
+  
+  // split this out to its own function
+  // call place mark from inside that function passing random num
+  // random num goes into 2nd else if
+  else if (playerO === false && computerPlayer === true) {
     randNum = randNumGen(boardArray.length); 
-    console.log(randNum)
+    aiPick = boardArray[randNum]
     setTimeout(() => {
-      document.getElementById('cell-' + boardArray[randNum]).textContent = "X"; 
+      document.getElementById('cell-' + aiPick).textContent = "X"; 
     }, 500);
-    xLog.push(boardArray[randNum]);
+    xLog.push(aiPick);
     xLog.sort(); 
+    console.log(aiPick)
     console.log(xLog)
     winChecker();
-    moveCount.push(boardArray[randNum]); 
-    boardArray.splice(boardArray[randNum], 1) 
+    moveCount.push(1); 
+    boardArray.splice(aiPick, 1) 
     playerO = true; 
     gameStatus.textContent = playerNameO + "'s turn";
     } 
-  }
+}
 
 // func to return random integer (inclusive on both ends)
 function randNumGen(max) { 
-  let randNum =  Math.floor(Math.random() * max)
+  let randNum =  Math.floor(Math.random() * max) + 1
   return randNum;
 }
 // | - - - game timer - - - |
@@ -193,8 +202,3 @@ function countUp() {
   count = count + 1;
   document.getElementById('timer').textContent = count + " seconds have elapsed in play"
 }
-
-
-
-
-
