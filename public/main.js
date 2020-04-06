@@ -69,48 +69,56 @@ function start() {
   document.getElementById('cell-1').addEventListener('click', () => {
     if (oLog.includes(1) === false && xLog.includes(1) === false) {
     placeMark(1);
+    boardArray.splice(1, 1) 
     winChecker();
     } else {alert('Space taken')};
   }); 
   document.getElementById('cell-2').addEventListener('click', () => {
     if (oLog.includes(2) === false && xLog.includes(2) === false) {
       placeMark(2);
+      boardArray.splice(2, 1) 
       winChecker();
       } else {alert('Space taken')};
   });
   document.getElementById('cell-3').addEventListener('click', () => {
     if (oLog.includes(3) === false && xLog.includes(3) === false) {
       placeMark(3);
+      boardArray.splice(3, 1) 
       winChecker();
       } else {alert('Space taken')};
   });
   document.getElementById('cell-4').addEventListener('click', () => {
     if (oLog.includes(4) === false && xLog.includes(4) === false) {
       placeMark(4);
+      boardArray.splice(4, 1) 
       winChecker();
       } else {alert('Space taken')};
   });
   document.getElementById('cell-5').addEventListener('click', () => {
     if (oLog.includes(5) === false && xLog.includes(5) === false) {
       placeMark(5);
+      boardArray.splice(5, 1) 
       winChecker();
       } else {alert('Space taken')};
   });
   document.getElementById('cell-6').addEventListener('click', () => {
     if (oLog.includes(6) === false && xLog.includes(6) === false) {
       placeMark(6);
+      boardArray.splice(6, 1) 
       winChecker();
       } else {alert('Space taken')};
   });
   document.getElementById('cell-7').addEventListener('click', () => {
     if (oLog.includes(7) === false && xLog.includes(7) === false) {
       placeMark(7);
+      boardArray.splice(7, 1) 
       winChecker();
       } else {alert('Space taken')};
   });
   document.getElementById('cell-8').addEventListener('click', () => {
     if (oLog.includes(8) === false && xLog.includes(8) === false) {
       placeMark(8);
+      boardArray.splice(8, 1) 
       winChecker();
       } else {alert('Space taken')};
   });
@@ -165,12 +173,7 @@ function placeMark(numCell) {
     playerO = true; // switch players
     gameStatus.textContent = playerNameO + "'s turn"; 
     console.log('multi player')
-  } 
-  
-  // split this out to its own function
-  // call place mark from inside that function passing random num
-  // random num goes into 2nd else if
-  else if (playerO === false && computerPlayer === true) {
+  } else if (playerO === false && computerPlayer === true) {
     randNum = randNumGen(boardArray.length); 
     aiPick = boardArray[randNum]
     setTimeout(() => {
